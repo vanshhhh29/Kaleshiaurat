@@ -1,0 +1,99 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>You're Loved!</title>
+  <style>
+    body {
+      background-color: #ffe6f0;
+      font-family: 'Comic Sans MS', cursive;
+      text-align: center;
+      color: #d6336c;
+      margin: 0;
+      padding: 50px;
+    }
+    h1 {
+      font-size: 3em;
+    }
+    .btn {
+      background-color: #ff99cc;
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      font-size: 1.2em;
+      border-radius: 10px;
+      margin: 10px;
+      cursor: pointer;
+    }
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      transform: rotate(45deg);
+      animation: float 4s infinite ease-in-out;
+    }
+    .heart:before,
+    .heart:after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      border-radius: 50%;
+    }
+    .heart:before {
+      top: -10px;
+      left: 0;
+    }
+    .heart:after {
+      left: -10px;
+      top: 0;
+    }
+    @keyframes float {
+      0% {
+        transform: translateY(0) rotate(45deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-200px) rotate(45deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>You're So Loved!</h1>
+  <p>Click a button to send some love!</p>
+  <button class="btn" onclick="hug()">Send a Hug</button>
+  <button class="btn" onclick="kiss()">Kiss Back</button>
+  <button class="btn" onclick="music.play()">Replay Song</button>
+  <audio id="music" autoplay loop>
+    <source src="music.mp3" type="audio/mpeg">
+  </audio>
+  <div id="loveAnimation"></div>
+  <script>
+    const music = document.getElementById('music');
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.style.left = Math.random() * window.innerWidth + "px";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 4000);
+    }
+    function hug() {
+      alert("Big warm hug sent!");
+      createHeart();
+    }
+    function kiss() {
+      alert("Smooch! You're extra loved!");
+      createHeart();
+      createHeart();
+    }
+    setInterval(createHeart, 1000);
+    document.body.onclick = () => music.play();
+  </script>
+</body>
+</html>
+    
